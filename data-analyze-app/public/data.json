@@ -1,0 +1,27 @@
+[
+    {
+        "name":"SAP",
+        "price":164.88,
+        "id":1
+    },
+    {
+        "name":"AMZN",
+        "price":3060.80,
+        "id":2
+    },
+    {
+        "name":"NIO",
+        "price":11.69,
+        "id":3
+    },
+    {
+        "name":"QCOM",
+        "price":92.82,
+        "id":4
+    },
+    {
+        "name":"KC",
+        "price":31.98,
+        "id":5
+    }
+]
