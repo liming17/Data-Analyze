@@ -9,6 +9,7 @@
                 <b-navbar-nav>
                     <b-nav-item to="/">Home</b-nav-item>
                     <b-nav-item to="/about">About</b-nav-item>
+                    <b-nav-item :to="{name: 'Profile', params: {id: '2333'}, query: {plan: 'private'}}">Profile</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -26,12 +27,12 @@
 
 <script>
 export default {
-    methods:{
+    methods: {
         search(){
             this.$store.dispatch("search", {text: this.searchText});
         }
     },
-    data(){
+    data() {
         return{
             searchText:''
         }
