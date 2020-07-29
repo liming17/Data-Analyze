@@ -2,7 +2,7 @@
 
     <b-container>
       <b-row align-v="center">
-        <myCard v-for="data in displayedData" :key="data.id" :name="data.name"/>
+        <myCard v-for="data in displayedData" :key="data.id" :id="data.id" :name="data.name" :price="data.price"/>
       </b-row>
       <b-row class="text-center" align="center"
       justify="center" id="footer">
@@ -30,43 +30,38 @@
 <script>
 // @ is an alias to /src
 import Card from '@/components/Card.vue';
+import {mapGetters} from "vuex";
 
 export default {
   name: "Home",
   components: {
     'myCard':Card
   },
+  computed:{
+    ...mapGetters(["myData","displayedData","rows"])
+  },
   mounted(){
     this.fetchData();
   },
   data(){
     return{
-      myData:[],
-      displayedData:[],
       currentPage: 1,
-      rows: 1,
       perPage: 3
     }
   },
   methods:{
     async fetchData(){
-      const res = await fetch("data.json");
-      const val = await res.json();
-      this.myData = val;
-      this.displayedData = val.slice(0,3);
-      this.rows = this.myData.length;
+      await this.$store.dispatch("fetchMyData");
     },
     paginate(currentPage){
-      const start = (currentPage -1)*this.perPage;
-      this.displayedData = this.myData.slice(start,start+3);
-
+      this.$store.dispatch("paginate",{currentPage,perPage:this.perPage});
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-#footer{
+#footer {
   margin-top: 30px;
 }
 </style>
