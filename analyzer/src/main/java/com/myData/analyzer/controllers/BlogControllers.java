@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +36,7 @@ public class BlogControllers {
 		return postService.getAllPosts();
 	}
 	
+	
 	@PostMapping(value="/post")
 	public String publishPost(@RequestBody Post post) {
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -50,5 +52,10 @@ public class BlogControllers {
     public String privateArea(){
         return "Private area";
     }
+	
+	@GetMapping(value = "/post/{username}")
+	public List<Post> postsByUsername(@PathVariable String username){
+		return postService.findByUser(userService.getUser(username));
+	}
 
 }

@@ -25,7 +25,7 @@ public class UserService {
     }
     
     public User getUser(String username){
-        return repo.findByUsername(username).get();
+        return repo.findByUsername(username).orElse(null);
     }
 
     public List<User> getAllUsers() {

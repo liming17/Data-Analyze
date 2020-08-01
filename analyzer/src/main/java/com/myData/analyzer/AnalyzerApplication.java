@@ -28,7 +28,13 @@ public class AnalyzerApplication {
     public CommandLineRunner setupDefaultUser(UserService service) {
         return args -> {
             service.save(new User(
-                    "user", //username
+                    "user1", //username
+                    "user", //password
+                    Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles 
+                    true//Active
+            ));
+            service.save(new User(
+                    "user2", //username
                     "user", //password
                     Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles 
                     true//Active

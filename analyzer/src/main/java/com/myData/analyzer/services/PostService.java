@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.myData.analyzer.repositories.PostRepository;
 import com.myData.analyzer.entities.Post;
+import com.myData.analyzer.entities.User;
 
 @Service
 public class PostService {
@@ -20,5 +21,9 @@ public class PostService {
 	
 	public void insert(Post post) {
 		postRepo.save(post);
+	}
+	
+	public List<Post> findByUser(User user){
+		return postRepo.findByCreatorId(user.getId());
 	}
 }

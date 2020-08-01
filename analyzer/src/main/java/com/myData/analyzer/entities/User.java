@@ -3,6 +3,8 @@ package com.myData.analyzer.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 import java.util.List;
@@ -16,9 +18,13 @@ public class User{
 	private Long id;
 
     private String username;
+    
+    @JsonIgnore
     private String password;
+    
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<Role> roles;
+    
     private boolean active;
     
     
