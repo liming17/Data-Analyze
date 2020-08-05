@@ -47,7 +47,7 @@ export default new Vuex.Store({
     },
     async paginate({commit, state}, {currentPage,perPage}) {
       const start = (currentPage - 1) * perPage;
-      const displayedData = state.myData.slice(start, start + 3);
+      const displayedData = state.myData.slice(start, start + perPage);
       commit(("SET_DISPLAY_DATA"), displayedData);
     },
     updatePagination({commit,dispatch},{myJson,currentPage,perPage}){

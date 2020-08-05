@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myData.analyzer.entities.Role;
@@ -20,12 +23,15 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping(value="/users")
+	@Autowired
+	private TokenStore tokenStore;
+	
+	@GetMapping(value = "/users")
 	public List<User> getUsers(){
 		return userService.getAllUsers();
 	}
 	
-	@PostMapping(value="/register")
+	@PostMapping(value = "/register")
 	public String register(@RequestBody UserRegistration userRegistration) {
 		if(!userRegistration.getPassword().equals(userRegistration.getPasswordConfirmation())) {
 			return "password do not match";
@@ -36,6 +42,17 @@ public class UserController {
 		userService.save(new User(userRegistration.getUsername(), userRegistration.getPassword(), Arrays.asList(new Role("USER")), true));
 		
 		return "User created!";
+	}
+	
+	@GetMapping(value = "/getCurrentUser")
+	public String getCurrentUser() {
+		return SecurityContextHolder.getContext().getAuthentication().getName();
+	}
+	
+	@GetMapping(value = "/logoutCurrentUser")
+	public String logout(@RequestParam (value="access_token") String accessToken) {
+		tokenStore.removeAccessToken(tokenStore.readAccessToken(accessToken));
+		return "Logout successfully!";
 	}
 
 }

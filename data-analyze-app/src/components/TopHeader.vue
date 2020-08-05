@@ -8,7 +8,8 @@
                 <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item to="/">Home</b-nav-item>
-                    <b-nav-item to="/about">About</b-nav-item>
+                    <b-nav-item to="/blog">Blog</b-nav-item>
+                    <b-nav-item to="/login">Login</b-nav-item>
                     <b-nav-item :to="{name: 'Profile', params: {id: '2333'}, query: {plan: 'private'}}">Profile</b-nav-item>
                 </b-navbar-nav>
 
