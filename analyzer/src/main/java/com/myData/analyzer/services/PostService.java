@@ -26,4 +26,28 @@ public class PostService {
 	public List<Post> findByUser(User user){
 		return postRepo.findByCreatorId(user.getId());
 	}
+	
+    public String deletePost(Long id, String username){
+	    Post thePost = postRepo.findById(id).get();
+	    if(thePost == null) {
+	    	return "Post not found!";
+	    }else if(!thePost.getCreator().getUsername().equals(username)) {
+	    	return "Username error!";
+	    }else {
+		    postRepo.deleteById(id);
+		    return "Post deleted!";
+	    }
+	}
+
+	public Post getPost(Long id) {
+	    return postRepo.findById(id).get();
+	}
+
+	public Post find(Long id) {
+	    return postRepo.findById(id).get();
+	}
+	 
+	public List<Post> searchPosts(String searchText){
+		 return (List<Post>) postRepo.searchPosts(searchText);
+	}
 }
