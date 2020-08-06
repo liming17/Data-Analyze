@@ -2,7 +2,7 @@
   <div class="blog">
     <b-container>
       <b-row align-v="center">
-        <myBlog v-for="blog in displayedBlogs" :key="blog.id" :dateCreated="blog.dateCreated" :title="blog.title" :body="blog.body"/>
+        <myBlog v-for="blog in displayedBlogs" :key="blog.id" :id="blog.id" :dateCreated="blog.dateCreated" :title="blog.title" :body="blog.body"/>
       </b-row>
     </b-container>
     <b-pagination
@@ -25,7 +25,7 @@ import axios from 'axios';
 import MyBlog from '@/components/MyBlog.vue';
 export default {
   components: {
-    'myBlog':MyBlog
+    'myBlog': MyBlog
   },
   data() {
     return{
