@@ -1,16 +1,22 @@
 <template>
     <div>
           <b-navbar toggleable="lg" type="dark" variant="info">
-                <b-navbar-brand href="#">NavBar</b-navbar-brand>
+                <b-navbar-brand href="#">DataA.</b-navbar-brand>
 
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
                 <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item to="/">Home</b-nav-item>
-                    <b-nav-item to="/blog">Blog</b-nav-item>
-                    <b-nav-item to="/login">Login</b-nav-item>
+                    <b-nav-item-dropdown text="Blog" right>
+                        <b-dropdown-item v-if="token.length == 0" to="/login">My Blog</b-dropdown-item>
+                        <b-dropdown-item v-else to="/blog">My Blog</b-dropdown-item>
+                        <b-dropdown-item v-if="token.length == 0" to="/login">Post Blog</b-dropdown-item>
+                        <b-dropdown-item v-else to="/postBlog">Post Blog</b-dropdown-item>
+                    </b-nav-item-dropdown>
                     <b-nav-item :to="{name: 'Profile', params: {id: '2333'}, query: {plan: 'private'}}">Profile</b-nav-item>
+                    <b-nav-item v-if="token.length == 0" to="/login">Login</b-nav-item>
+                    <b-nav-item v-else @click="logout()">Logout</b-nav-item>
                 </b-navbar-nav>
 
                 <!-- Right aligned nav items -->
@@ -27,16 +33,23 @@
 
 
 <script>
+import {mapGetters} from "vuex";
 export default {
     methods: {
-        search(){
+        search() {
             this.$store.dispatch("search", {text: this.searchText});
+        },
+        logout() {
+            this.$store.dispatch("removeToken", {token: this.token});
         }
     },
     data() {
         return{
             searchText:''
         }
+    },
+    computed: {
+         ...mapGetters(["token"])
     }
 
 }

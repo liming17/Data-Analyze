@@ -63,6 +63,7 @@
 
 <script>
 import axios from 'axios';
+import {mapGetters} from "vuex";
 export default {
     data() {
        return{
@@ -74,7 +75,7 @@ export default {
     },
     methods:{
         onSubmit(evt) {
-          evt.preventDefault();
+            evt.preventDefault();
             var params = new URLSearchParams();
             params.append('grant_type', 'password');
             params.append('username', this.username);
@@ -86,9 +87,17 @@ export default {
                 headers: {"Content-type": "application/x-www-form-urlencoded; charset=utf-8"},
                 data:params
             }).then(response => {
-               console.log(response.data);
-               document.location.replace("/");
+
+               this.$store.dispatch("setToken", {token: response.data.access_token}).then(()=>{
+                   console.log(this.token);
+                   this.$router.push({ path: '/' });
+               });
+
+            }).catch((err)=>{
+                alert("fail to login");
+                console.log(err);
             });
+
         },
         onReset(evt) {
             evt.preventDefault();
@@ -101,6 +110,9 @@ export default {
         show: function(val) {
             this.passwordFieldType = val.length === 0 ? 'password' : 'text';
         }
+    },
+    computed: {
+         ...mapGetters(["token"])
     }
     
 }

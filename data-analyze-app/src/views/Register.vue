@@ -107,7 +107,8 @@ export default {
             }
             axios.post("/register",data).then(response =>{
                 console.log(response.data);
-                document.location.replace("/");
+                this.$router.push({ path: '/login' });
+                // document.location.replace("/login");
             })
         },
         onReset(evt) {

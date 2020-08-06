@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from 'axios';
 
 Vue.use(Vuex);
 
@@ -8,7 +9,8 @@ export default new Vuex.Store({
     myData:[],
     displayedData:[],
     rows:0,
-    showSpinner:false
+    showSpinner:false,
+    token:""
   },
   mutations: {
     SET_DATA(state,myData){
@@ -22,10 +24,13 @@ export default new Vuex.Store({
     },
     SET_SPINNER(state,showSpinner){
       state.showSpinner = showSpinner;
+    },
+    SET_TOKEN(state,token){
+      state.token = token;
     }
   },
   actions: {
-   async fetchData({commit}){
+   async fetchData({commit}) {
       commit("SET_SPINNER",true);
       return new Promise(resolve=>{
         setTimeout(async ()=>{
@@ -36,7 +41,7 @@ export default new Vuex.Store({
         },1000)
       })
     },
-    async fetchMyData({dispatch,commit}){
+    async fetchMyData({dispatch,commit}) {
        commit("SET_SPINNER",true);
        const myJson = await dispatch("fetchData");
        commit("SET_DATA",myJson);
@@ -55,28 +60,45 @@ export default new Vuex.Store({
        commit("SET_ROWS",myJson.length);
        dispatch("paginate",{currentPage,perPage});
     },
-    async search({dispatch,commit},{text}){
+    async search({dispatch,commit},{text}) {
       commit("SET_SPINNER",true);
        const myJson = await this.dispatch("fetchData");
        const values = myJson.filter(val=> 
         val.name.toLowerCase().includes(text.toLowerCase()));
        dispatch("updatePagination",{myJson:values, currentPage:1, perPage:3});
        commit("SET_SPINNER",false);
+    },
+    async setToken({commit},{token}){
+       commit(("SET_TOKEN"),token);
+    },
+    async removeToken({commit},{token}){
+
+      axios.get("/logoutCurrentUser?access_token=" + token)
+      .then((res) => {
+        commit(("SET_TOKEN"),"");
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+    });
     }
     
   },
-  getters:{
-    myData(state){
+  getters: {
+    myData(state) {
       return state.myData;
     },
-    rows(state){
+    rows(state) {
       return state.rows;
     },
-    displayedData(state){
+    displayedData(state) {
       return state.displayedData;
     },
-    showSpinner(state){
+    showSpinner(state) {
       return state.showSpinner;
+    },
+    token(state) {
+      return state.token;
     }
   },
   modules: {}

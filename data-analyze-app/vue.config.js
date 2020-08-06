@@ -13,6 +13,14 @@ module.exports = {
         "/register": {
           target: "http://localhost:8080",
           secure: false
+        },
+        "/logoutCurrentUser": {
+          target: "http://localhost:8080",
+          secure: false
+        },
+        "/post": {
+          target: "http://localhost:8080",
+          secure: false
         }
       }
     }
