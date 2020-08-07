@@ -21,6 +21,14 @@ module.exports = {
         "/post": {
           target: "http://localhost:8080",
           secure: false
+        },
+        "/post/postComment": {
+          target: "http://localhost:8080",
+          secure: false
+        },
+        "/comments": {
+          target: "http://localhost:8080",
+          secure: false
         }
       }
     }

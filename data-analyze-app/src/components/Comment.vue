@@ -2,7 +2,7 @@
 <div align="left">
     <hr>
     <h4>{{user}}</h4>
-    <p id="body" style="font-size: 20px;">{{body}}</p>
+    <p id="body">{{body}}</p>
 </div>
 </template>
 
@@ -20,7 +20,7 @@ h4 {
 }
 
 #body {
-   font-size: 20px;
+   font-size: 15px;
 }
 
 
