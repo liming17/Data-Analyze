@@ -30,13 +30,13 @@ public class AnalyzerApplication {
             service.save(new User(
                     "user1", //username
                     "user", //password
-                    Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles 
+                    Arrays.asList(new Role("USER"), new Role("ADMIN")),//roles 
                     true//Active
             ));
             service.save(new User(
                     "user2", //username
                     "user", //password
-                    Arrays.asList(new Role("USER"), new Role("ACTUATOR")),//roles 
+                    Arrays.asList(new Role("USER"), new Role("ADMIN")),//roles 
                     true//Active
             ));
         };

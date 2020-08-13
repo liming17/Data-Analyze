@@ -22,7 +22,17 @@ public class User{
     @JsonIgnore
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade =
+        {
+                CascadeType.DETACH,
+                CascadeType.MERGE,
+                CascadeType.REFRESH,
+                CascadeType.PERSIST
+        },
+        targetEntity = Role.class)
+    @JoinTable(name = "role_user", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {
+            @JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
     
     private boolean active;
