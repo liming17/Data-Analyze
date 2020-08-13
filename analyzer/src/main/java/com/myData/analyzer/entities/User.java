@@ -22,7 +22,7 @@ public class User{
     @JsonIgnore
     private String password;
     
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private List<Role> roles;
     
     private boolean active;

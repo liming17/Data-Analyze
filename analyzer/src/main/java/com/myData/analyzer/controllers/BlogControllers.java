@@ -93,7 +93,7 @@ public class BlogControllers {
 
     @PostMapping(value = "/post/postComment")
     public boolean postComment(@RequestBody CommentPojo comment){
-        Post post = postService.find(comment.getPostId());
+        Post post = postService.getPost(comment.getPostId());
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User creator = userService.getUser(userDetails.getUsername());
         if(post == null || creator == null)

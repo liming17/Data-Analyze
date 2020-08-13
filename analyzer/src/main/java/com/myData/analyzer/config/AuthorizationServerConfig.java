@@ -56,6 +56,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .resourceIds("oauth2-resource")
                 .accessTokenValiditySeconds(5000)
                 .secret(passwordEncoder.encode("secret"));
+        
+        //client.jdbc(dataSource).passwordEncoder(passwordEncoder);
     }
 
     /**

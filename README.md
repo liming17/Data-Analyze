@@ -44,5 +44,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 #### Sign Up
 ![Image of signUp](screenshots/signup.png)
 
+#### ERD
+![Image of ERD](screenshots/ERD.png)
+
 
 
