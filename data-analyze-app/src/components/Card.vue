@@ -3,21 +3,17 @@
         <b-col>
           <b-card
           :title="name"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Card Img"
-          img-top
+          :sub-title="lastUpdate"
+          class="mb-2"
           tag="article"
-          style="max-width:20rem"
-          class="mg-2"
           footer="Card Footer"
+          align="left"
           >
-            <b-card-text>
-              The stock price is: {{price}}
-            </b-card-text>
-            <b-button v-b-modal="modalId" variant="primary" v-b-tooltip.hover title="view modal here">View</b-button>
-            <b-modal :id="modalId" title="This is a modal">
-              <p class="my-4"> Hello from modal </p>
-            </b-modal>
+            <div>
+              
+            </div>
+            
+
           </b-card>
         </b-col>
     </div>
@@ -25,10 +21,13 @@
 
 <script>
 export default {
-    props: ['id','name','price'],
+    props: ["name","symbol"],
     computed: {
-      modalId(){
-        return `modal-${this.id}`;
+      
+    },
+    data() {
+      return {
+         lastUpdate: new Date()
       }
     }
 }

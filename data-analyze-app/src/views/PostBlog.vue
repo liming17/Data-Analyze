@@ -13,7 +13,7 @@
     </template>
     <div align="left">
     <b-form>
-        <label class="sr-only" for="inline-form-input-name">Title</label>
+        <label class="sr-only" for="inline-form-input-title">Title</label>
         <b-input
             id="form-input-title"
             class="mb-2 mr-sm-2 mb-sm-0"

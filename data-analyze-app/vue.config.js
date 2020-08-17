@@ -29,6 +29,10 @@ module.exports = {
         "/comments": {
           target: "http://localhost:8080",
           secure: false
+        },
+        "/stock": {
+          target: "http://localhost:8080",
+          secure: false
         }
       }
     }

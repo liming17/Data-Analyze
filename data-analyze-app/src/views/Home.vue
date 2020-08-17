@@ -1,47 +1,39 @@
 <template>
 
-    <b-container>
-      <b-row align-v="center">
-        <myCard v-for="data in displayedData" :key="data.id" :id="data.id" :name="data.name" :price="data.price"/>
-      </b-row>
-      <b-row class="text-center" align="center"
-      justify="center" id="footer">
-      <b-col>
-      </b-col>
-        <b-col>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          first-text="First"
-          prev-text="Prev"
-          next-text="Next"
-          last-text="Last"
-          @input="paginate(currentPage)"
-        ></b-pagination>
-        </b-col>
-        <b-col>
-      </b-col>
-      </b-row>
-    </b-container>
+    <div>
+      <b-card
+      header="My Watch List"
+      id="mycard"
+      >
+        <WatchList/>
+      </b-card>
+
+      <b-card header="Search Quotes" border-variant="light" id="mycard">
+        <StockTbl/>
+      </b-card>
+     
+
+    </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
-import Card from '@/components/Card.vue';
+import StockTbl from '@/components/StockTbl.vue';
+import WatchList from '@/components/WatchList.vue';
 import {mapGetters} from "vuex";
 
 export default {
   name: "Home",
   components: {
-    'myCard':Card
+    'StockTbl' : StockTbl,
+    "WatchList" : WatchList
   },
   computed:{
     ...mapGetters(["myData","displayedData","rows"])
   },
   mounted(){
-    this.fetchData();
+    //this.fetchData();
   },
   data(){
     return{
@@ -63,5 +55,12 @@ export default {
 <style lang="scss" scoped>
 #footer {
   margin-top: 30px;
+}
+
+#mycard {
+  width: 50rem; 
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

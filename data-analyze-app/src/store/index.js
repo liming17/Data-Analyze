@@ -10,7 +10,9 @@ export default new Vuex.Store({
     displayedData:[],
     rows:0,
     showSpinner:false,
-    token:""
+    token:"",
+    API_token:  "2dd22b04f0mshb3f303e9f309eb1p1fbf79jsnb090e24265fb",
+    API_prefix: "https://www.alphavantage.co/query?"
   },
   mutations: {
     SET_DATA(state,myData){
@@ -99,6 +101,12 @@ export default new Vuex.Store({
     },
     token(state) {
       return state.token;
+    },
+    API_token(state) {
+      return state.API_token;
+    },
+    API_prefix(state) {
+      return state.API_prefix;
     }
   },
   modules: {}

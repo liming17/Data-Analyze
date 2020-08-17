@@ -31,6 +31,8 @@ public class Stock {
 	
 	private String name;
 	
+	private int price; //price < 0, then is not a quote in my portfolio
+	
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade =
         {
