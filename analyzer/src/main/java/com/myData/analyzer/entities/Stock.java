@@ -57,5 +57,11 @@ public class Stock {
 	public Stock() {
 		
 	}
+	
+	public Stock(String symbol, String name, int price) {
+		this.symbol = symbol;
+		this.name = name;
+		this.price = price;
+	}
 
 }

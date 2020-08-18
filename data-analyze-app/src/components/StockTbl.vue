@@ -62,7 +62,7 @@ export default {
         var stock = {symbol : item.symbol, name: item.name, price : 0}
         axios.post("/stock/saveStock",stock).then((response)=>{
                 alert(response.data);
-                this.$router.push({path : "/"});
+                this.$emit('updateWatchList');
             }).catch((err)=>{
                 alert(err);
                 console.log(err);

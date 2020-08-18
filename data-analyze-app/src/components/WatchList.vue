@@ -8,7 +8,7 @@
             </template>
              <template v-slot:cell(actions)="row">
                 <b-button size="sm" @click="addStock(row.item)" class="mr-1">
-                Add Stock to My List
+                Choose
                 </b-button>
             </template>
     </b-table>   
@@ -37,7 +37,7 @@ export default {
         }
     },
     mounted() {
-        // this.getData();
+        this.getData();
     },
     methods: {
         viewStock(item){

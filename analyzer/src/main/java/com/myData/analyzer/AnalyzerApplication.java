@@ -15,8 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.myData.analyzer.entities.Role;
+import com.myData.analyzer.entities.Stock;
 import com.myData.analyzer.entities.User;
 import com.myData.analyzer.repositories.UserRepository;
+import com.myData.analyzer.services.StockService;
 import com.myData.analyzer.services.UserService;
 
 
@@ -38,6 +40,39 @@ public class AnalyzerApplication {
                     "user", //password
                     Arrays.asList(new Role("USER"), new Role("ADMIN")),//roles 
                     true//Active
+            ));
+        };
+    }
+    
+    @Bean
+    public CommandLineRunner setupDefaultStocks(StockService service) {
+        return args -> {
+            service.saveStock(new Stock(
+                    "BABA", //symbol
+                    "Alibaba Group Holding Limited", //name
+                    0
+            ));
+            service.saveStock(new Stock(
+                    "AAPL", 
+                    "Apple Inc.", 
+                    0
+            ));
+            service.saveStock(new Stock(
+                    "BILI", 
+                    "Bilibili Inc.", 
+                    0
+            ));
+            
+            service.saveStock(new Stock(
+                    "AMZN", 
+                    "Amazon.com Inc.", 
+                    0
+            ));
+            
+            service.saveStock(new Stock(
+                    "FB", 
+                    "Facebook Inc.", 
+                    0
             ));
         };
     }
