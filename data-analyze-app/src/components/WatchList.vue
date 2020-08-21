@@ -42,7 +42,7 @@ export default {
     methods: {
         viewStock(item){
           alert(item);
-          //goto company component
+          this.$router.push('/stockOverview/' + item.symbol);
         },
         addStock(item){
             alert(item);
@@ -67,9 +67,9 @@ export default {
     watch: {
         myStocks: function(val){
             var promises = [];
-            var name = [];
+            var stocks = [];
             val.forEach(element => {
-                name.push(element.name);
+                stocks.push({id:element.id, name:element.name});
                 var promise = axios.get(this.API_prefix + "function=GLOBAL_QUOTE&symbol="+ element.symbol + "&apikey=" + this.API_token);
                 promises.push(promise); 
             });
@@ -81,8 +81,9 @@ export default {
                 response.forEach(element => {
                     var data = element.data["Global Quote"];
                     if(data != null && Object.prototype.hasOwnProperty.call(data, '01. symbol')){
-                        var stockName = name[name_idx];
-                        var stock = {symbol : data["01. symbol"], name: stockName, price : data["05. price"], change_percent : data["10. change percent"]};
+                        var stockName = stocks[name_idx].name;
+                        var stockId = stocks[name_idx].id;
+                        var stock = {id: stockId, symbol : data["01. symbol"], name: stockName, price : data["05. price"], change_percent : data["10. change percent"]};
                         stock_price.push(stock);
                     }
                     name_idx++;

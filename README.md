@@ -50,6 +50,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 #### Sign Up
 ![Image of signUp](screenshots/signup.png)
 
+#### Company Overview
+![Image of signUp](screenshots/CompanyOverview.png)
+
 #### ERD
 ![Image of ERD](screenshots/ERD.png)
 
