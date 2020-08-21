@@ -44,14 +44,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 #### Home
 ![Image of home](screenshots/home.png)
 
+#### Company Overview
+![Image of CompanyOverview](screenshots/companyOverview.png)
+
 #### Sign In/Up
 ![Image of signIn](screenshots/signin.png)
 
 #### Sign Up
 ![Image of signUp](screenshots/signup.png)
 
-#### Company Overview
-![Image of signUp](screenshots/CompanyOverview.png)
 
 #### ERD
 ![Image of ERD](screenshots/ERD.png)
