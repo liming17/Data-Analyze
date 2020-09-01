@@ -6,6 +6,9 @@ import Missing from "../views/Missing.vue";
 import Info from "../views/Info.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
+import MyList from "../components/MyList.vue";
+import ViewList from "../components/ViewList.vue";
+import WatchList from "../components/WatchList.vue";
 
 Vue.use(VueRouter);
 
@@ -42,6 +45,39 @@ const routes = [
         component: Info
       }
     ]
+  },
+  {
+    path: "/MyList",
+    name: "MyListMain",
+    component: MyList
+  },
+  {
+    path: "/MyList/:id",
+    name: "MyList",
+    component: MyList,
+    children: [
+      {
+        path: '',
+        component: WatchList, // default child path
+      },
+      {
+        path: 'ViewList',
+        name: "ViewList",
+        component: ViewList,
+        props: true
+      },
+      {
+        path: 'defaultList',
+        name: "defaultList",
+        component: WatchList,
+      },
+    ]
+  },
+  {
+    path: "/ViewList",
+    name: "ViewList",
+    component: ViewList,
+    props: true 
   },
   {
     path: "/blog",

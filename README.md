@@ -53,6 +53,16 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 #### Sign Up
 ![Image of signUp](screenshots/signup.png)
 
+#### View My List
+![Image of List](screenshots/defaultList.png)
+
+![Image of List](screenshots/sellList.png)
+
+#### Post A blog
+![Image of blog](screenshots/postBlog.png)
+
+#### View My blogs
+![Image of blog](screenshots/viewBlog.png)
 
 #### ERD
 ![Image of ERD](screenshots/ERD.png)

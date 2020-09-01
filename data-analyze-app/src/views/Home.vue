@@ -18,6 +18,8 @@
       id="mycard"
       >
         <WatchList :key="listIdx"/>
+        <b-button v-if="token.length == 0" to="/login" variant="primary">View My Lists</b-button>
+        <b-button v-else to="/MyList/0" variant="primary">View My Lists</b-button>
       </b-card>
   </b-card-group>
   <b-card-group deck>
@@ -57,7 +59,7 @@ export default {
     GChart
   },
   computed:{
-    ...mapGetters(["myData","displayedData","rows"])
+    ...mapGetters(["myData","displayedData","rows","token"])
   },
   mounted(){
     //this.fetchData();
@@ -92,7 +94,7 @@ export default {
     },
     handleUpdate() {
        this.listIdx++;
-       alert(this.listIdx);
+       //alert(this.listIdx);
     },
     async fetchDow() {
       const res = await fetch("DIA_VWAP.json");
