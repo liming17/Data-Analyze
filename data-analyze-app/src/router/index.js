@@ -9,6 +9,7 @@ import Register from "../views/Register.vue";
 import MyList from "../components/MyList.vue";
 import ViewList from "../components/ViewList.vue";
 import WatchList from "../components/WatchList.vue";
+import AddStockToList from "../components/AddStockToList.vue";
 
 Vue.use(VueRouter);
 
@@ -59,6 +60,7 @@ const routes = [
       {
         path: '',
         component: WatchList, // default child path
+        props:{addTrigger:false}
       },
       {
         path: 'ViewList',
@@ -70,13 +72,14 @@ const routes = [
         path: 'defaultList',
         name: "defaultList",
         component: WatchList,
+        props:{addTrigger:false}
       },
     ]
   },
   {
-    path: "/ViewList",
-    name: "ViewList",
-    component: ViewList,
+    path: "/addStockToList",
+    name: "AddStockToList",
+    component: AddStockToList,
     props: true 
   },
   {

@@ -7,12 +7,20 @@
                 </b-button>
             </template>
              <template v-slot:cell(actions)="row">
-                <b-button size="sm" @click="addStock(row.item)" class="mr-1">
-                Choose
+                <b-button size="sm" v-if="!addTrigger" to="/MyList/0" class="mr-1">
+                View
+                </b-button>
+                <b-button size="sm" v-else-if="addTrigger&&stocksToBeAdded.includes(row.item.id)" @click="addRemoveStock(row.item.id)" class="mr-1">
+                 Remove
+                </b-button>
+                <b-button size="sm" v-else @click="addRemoveStock(row.item.id)" class="mr-1">
+                 Add
                 </b-button>
             </template>
     </b-table>   
-
+    <b-button v-show="addTrigger" size="sm" @click="addToList" class="mr-1">
+        Confirm
+    </b-button>
 </div>
     
 </template>
@@ -22,6 +30,7 @@ import axios from 'axios';
 import {mapGetters} from "vuex";
 
 export default {
+    props:["addTrigger"],
     data() {
         return {
            items:[],
@@ -33,20 +42,28 @@ export default {
                {key: "view", label: "View"},
                {key: "actions", label: "Actions"}
            ],
-           myStocks: []
+           myStocks: [],
+           stocksToBeAdded:[]
         }
     },
     mounted() {
         this.getData();
     },
     methods: {
-        viewStock(item){
+        viewStock(item) {
           alert(item);
           this.$router.push('/stockOverview/' + item.symbol);
         },
-        addStock(item){
-            alert(item);
-            // go to add to list component
+        addRemoveStock(id) {
+           var idx = this.stocksToBeAdded.indexOf(id);
+           if(idx != -1){
+              this.stocksToBeAdded.splice(idx,1);
+           }else{
+               this.stocksToBeAdded.push(id);
+           }
+        },
+        addToList() {
+            this.$emit('triggerItem', this.stocksToBeAdded)
         },
         getData() {
            axios.get("/stock/viewAllStocks").then(response=>{

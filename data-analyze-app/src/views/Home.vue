@@ -17,7 +17,7 @@
       header="My Watch List"
       id="mycard"
       >
-        <WatchList :key="listIdx"/>
+        <WatchList :key="listIdx" :addTrigger="false"/>
         <b-button v-if="token.length == 0" to="/login" variant="primary">View My Lists</b-button>
         <b-button v-else to="/MyList/0" variant="primary">View My Lists</b-button>
       </b-card>

@@ -56,7 +56,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 #### View My List
 ![Image of List](screenshots/defaultList.png)
 
-![Image of List](screenshots/sellList.png)
+![Image of List](screenshots/viewList.png)
+
+#### Add Stocks to My List
+![Image of List](screenshots/addToList.png)
 
 #### Post A blog
 ![Image of blog](screenshots/postBlog.png)
